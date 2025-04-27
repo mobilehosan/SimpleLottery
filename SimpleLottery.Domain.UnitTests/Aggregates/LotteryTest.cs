@@ -1,6 +1,7 @@
 ﻿using FluentAssertions;
 using Moq;
 using SimpleLottery.Domain.Aggregates;
+using SimpleLottery.Domain.Constants;
 using SimpleLottery.Domain.Entities;
 using SimpleLottery.Domain.Options;
 using SimpleLottery.Domain.Services;
@@ -75,7 +76,7 @@ public class LotteryTest
         // Third Tier = 20% of 115 = 23      $ 0.50 
 
         lotteryResult.TicketsInfo.Keys.Count().Should().Be(12);
-        var player1 = Player.CreatePlayer("Player 1", 1, 0);
+        var player1 = Player.CreatePlayer(User.Name, 1, 0);
         lotteryResult.TicketsInfo[player1].WinningTickets.Count.Should().Be(5);
         lotteryResult.TicketsInfo[player1].WinningTickets[0].Ammount.Should().Be(2.87m);
         lotteryResult.TicketsInfo[player1].WinningTickets[1].Ammount.Should().Be(2.87m);
