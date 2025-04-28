@@ -40,7 +40,12 @@ public class Lottery
     {
         SetUserTicketsCount(userTicketsCount);
         _tickets = GetGeneratedTickets();
-        
+
+        if (_tickets.Count == 0) // none of the players has enought money to buy even a single ticket
+        {
+            return LotteryResult.CreateEmptyLotteryResult(House, _players.PlayersList);
+        }
+
         DrawResult result = _drawStrategy.Draw(_tickets, Tiers);
         
         House.AddRevenue(result.HouseRevenue);
